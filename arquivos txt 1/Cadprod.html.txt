@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brechó Online - Protótipo</title>
+    <link rel="stylesheet" href="Cadastro.css">
+</head>
+<body>
+    <header>
+        <h1>Brechó Online</h1>
+        <nav>
+            <button id="show-products">Produtos</button>
+            <button id="show-vendors">Vendedores</button>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Seção de Cadastro -->
+        <section id="forms">
+            <div id="product-form">
+                <h2>Cadastrar Produto</h2>
+                <form>
+                    <input type="text" id="product-name" placeholder="Nome do Produto" required>
+                    <textarea id="product-description" placeholder="Descrição do Produto"></textarea>
+                    <input type="number" id="product-price" placeholder="Preço" step="0.01" required>
+                    <select id="product-vendor">
+                        <option value="" disabled selected>Selecione o vendedor</option>
+                    </select>
+                    <button type="button" id="add-product">Adicionar Produto</button>
+                </form>
+            </div>
+            
+            <div id="vendor-form">
+                <h2>Cadastrar Vendedor</h2>
+                <form>
+                    <input type="text" id="vendor-name" placeholder="Nome do Vendedor" required>
+                    <input type="email" id="vendor-email" placeholder="E-mail" required>
+                    <button type="button" id="add-vendor">Adicionar Vendedor</button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Seção de Listagem -->
+        <section id="listings">
+            <div id="product-list">
+                <h2>Produtos</h2>
+                <div class="items"></div>
+            </div>
+            
+            <div id="vendor-list">
+                <h2>Vendedores</h2>
+                <div class="items"></div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="Cad.js"></script>
+</body>
+</html>

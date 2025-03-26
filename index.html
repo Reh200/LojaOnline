@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brechó Online</title>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <img src="img/logos_etc/logo1300vs800px.png" alt="Logo Brechó Online">
+        </div>
+        <nav>
+            <h1>Brechó Online</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+
+        <style>
+            /* Reset básico */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            /* Estilo do corpo */
+            body {
+                background-color: #f5f5f5;
+                color: #333;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Cabeçalho */
+            header {
+                background-color: #333;
+                color: #fff;
+                padding: 10px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            header .logo {
+                display: flex;
+                align-items: center;
+            }
+
+            header .logo img {
+                max-width: 55px;
+                height: auto;
+                border-radius: 8px;
+                border: 2px solid #fff;
+                margin-right: 10px;
+            }
+
+            header nav {
+                display: flex;
+                align-items: center;
+                flex-grow: 1;
+            }
+
+            header nav h1 {
+                font-size: 28px;
+                letter-spacing: 1.5px;
+                color: #fff;
+                font-family: 'Dancing Script', cursive;
+                margin-right: 40px;
+            }
+
+            header nav ul {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+                margin-left: auto;
+            }
+
+            header nav ul li a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 18px;
+                padding: 5px 10px;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+
+            header nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            /* Estilos para a barra de pesquisa */
+            .barra-pesquisa {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px;
+            }
+
+            .barra-pesquisa input {
+                width: 250px;
+                padding: 6px;
+                font-size: 16px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                margin-right: 10px;
+            }
+
+            .barra-pesquisa button {
+                padding: 7px 15px;
+                background-color: #4021a5;
+                color: white;
+                border: none;
+                font-size: 13px;
+                border-radius: 3px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .barra-pesquisa button:hover {
+                background-color: #0f49b4;
+            }
+
+            /* Estilo para os resultados da pesquisa */
+            #resultados {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            /* Seção Produtos */
+            #produtos {
+                padding: 100px 20px 20px 20px;
+                background-color: #fff;
+                text-align: center;
+                margin-top: 60px;
+            }
+
+            #produtos h2 {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+
+            .produtos-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .produto {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                width: 300px;
+                padding: 20px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-height: 500px;
+                position: relative;
+                transition: transform 0.3s ease;
+            }
+
+            .produto:hover {
+                transform: scale(1.05);
+            }
+
+            .produto img {
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+                object-fit: contain;
+                border-radius: 5px;
+                margin-bottom: 15px;
+            }
+
+            .produto h3 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+
+            .produto .preco {
+                font-size: 20px;
+                font-weight: bold;
+                color: #333;
+                margin-top: auto;
+            }
+
+            .produto button {
+                margin-top: 10px;
+                padding: 10px;
+                background-color: #4021a5;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .produto button:hover {
+                background-color: #0f49b4;
+            }
+
+            /* Seção Sobre Nós */
+            #sobre {
+                background-color: #43177c2a;
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            #sobre h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+                color: #2b2a2a;
+            }
+
+            #sobre p {
+                font-size: 18px;
+                line-height: 1.6;
+                color: #4f4f50;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            /* Seção Contato */
+            #contato {
+                background-color: #f9f9f9;
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            #contato h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            #contato form {
+                max-width: 400px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            #contato label {
+                display: block;
+                font-size: 16px;
+                margin-bottom: 10px;
+                color: #555;
+            }
+
+            #contato input[type="text"],
+            #contato input[type="email"],
+            #contato textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 16px;
+                box-sizing: border-box;
+                transition: border-color 0.3s;
+            }
+
+            #contato input[type="text"]:focus,
+            #contato input[type="email"]:focus,
+            #contato textarea:focus {
+                border-color: #007BFF;
+                outline: none;
+            }
+
+            #contato button {
+                padding: 10px 20px;
+                background-color: #4021a5;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 18px;
+            }
+
+            #contato button:hover {
+                background-color: #0f49b4;
+            }
+
+            /* Rodapé */
+            footer {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            footer p {
+                margin: 0;
+            }
+
+            /* Subcabeçalho das Categorias */
+            .subcabecalho {
+                background: linear-gradient(45deg, #555, #888);
+                color: #fff;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-bottom: 3px solid #5423b1;
+                margin-top: 80px;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .subcabecalho:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            .subcabecalho nav ul {
+                list-style-type: none;
+                display: flex;
+                justify-content: center;
+                gap: 40px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .subcabecalho nav ul li {
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+
+            .subcabecalho nav ul li a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.2rem;
+                font-weight: 500;
+                position: relative;
+                transition: color 0.3s, transform 0.3s;
+                line-height: 1.5;
+            }
+
+            .subcabecalho nav ul li a::before {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: #fff;
+                opacity: 0;
+                transform: scaleX(0);
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+
+            .subcabecalho nav ul li a:hover {
+                color: #f0f0f0;
+                transform: scale(1.1);
+            }
+
+            .subcabecalho nav ul li a:hover::before {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+
+            /* Ícone do perfil */
+            .perfil {
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+
+            .perfil img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+        </style>
+
+        <!-- Barra de Pesquisa -->
+        <div class="barra-pesquisa">
+            <input type="text" id="barra-pesquisa" placeholder="Pesquisar produtos..." onkeyup="pesquisar()">
+            <button id="btn-pesquisar" onclick="pesquisar()">Pesquisar</button>
+        </div>
+        <!-- Ícone de Perfil -->
+        <div class="perfil">
+            <a href="Perfil.html" title="Acessar Perfil">
+                <img src="img/logos_etc/logodelobo.png" alt="Perfil">
+            </a>
+        </div>
+
+        <!-- Área onde os resultados da pesquisa serão exibidos -->
+        <div id="resultados"></div>
+
+    </header>
+
+    <!-- Subcabeçalho de Categorias -->
+    <div class="subcabecalho">
+        <nav>
+            <ul>
+                <li><a href="#roupas">Roupas</a></li>
+                <li><a href="#calcados">Calçados</a></li>
+                <li><a href="#acessorios">Acessórios</a></li>
+            </ul>
+        </nav>
+    </div>
+    </header>
+
+
+    <!-- Seção Produtos -->
+    <!-- Título Nossos Produtos -->
+    <section id="nossos-produtos">
+        <h2>Nossos Produtos</h2>
+    </section>
+    <section id="roupas" style="padding: 80px 20px;">
+        <h2>Roupas</h2>
+        <div class="produtos-container">
+            <div class="produto">
+                <img src="img/bermuda.jpg" alt="Bermuda">
+                <h3>Bermuda</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=2'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/blusa_frio_moleton.jpg" alt="Blusa de Frio Moletom">
+                <h3>Blusa de Frio Moletom</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=3'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/moletonadidasfino.jpg" alt="Moletom Adidas Fino">
+                <h3>Moletom Adidas Fino</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=37'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/vestido.jpg" alt="vestido de Mangas Longas">
+                <h3>Vestido de Mangas Longas</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=6'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/saia.jpg" alt="Saia com Fenda">
+                <h3>Saia com Fenda</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=7'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/regata_alcinha.jpg" alt="Regata de Alcinha">
+                <h3>Regata de Alcinha</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=8'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/macacao.jpg" alt="Macacão">
+                <h3>Macacão</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=9'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/CroppedCorsetTopCouroLycraBojoAlça.jpg" alt="Cropped de Couro">
+                <h3>Cropped de Couro</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=10'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/cropped_regata.jpg" alt="Cropped Regata Simples">
+                <h3>Cropped Regata Simples</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=11'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/vestido_alca_amarrar.jpg" alt="Vestido com Alças de Amarrar">
+                <h3>Vestido com Alças de Amarrar</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=12'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/saia_longa.jpg" alt="Saia Longa">
+                <h3>Saia Longa</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=40'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/short_jeans_preto.jpg" alt="Short Jeans Preto">
+                <h3>Short Jeans Preto</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=41'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/ColeteMasculinoPretoLife.jpg" alt="Colete Estofado">
+                <h3>Colete Estofado</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=60'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/ColeteMasculinoPretoParaibuna.jpg" alt="Colete com Bolsos">
+                <h3>Colete com Bolsos</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=61'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/bermudabrancalosangeles.jpg" alt="Bermuda Los Angeles">
+                <h3>Bermuda Los Angeles</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=62'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/blusafrio_high_moletom.jpg" alt="Blusa de Frio High">
+                <h3>Blusa de Frio High</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=63'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/CalcaJeansGlitch.jpg" alt="Calça Jeans Cargo">
+                <h3>Calça Jeans Cargo</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=64'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/camisetaverdelisa.jpg" alt="Camiseta Verde Lisa">
+                <h3>Camiseta Verde Lisa</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=65'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/ColeteFemininoCouroSintéticoZephyra.jpg" alt="Colete de Couro">
+                <h3>Colete de Couro</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=66'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/CalcaJeansCinzaEstrelas.jpg" alt="Calça Jeans Estrelada">
+                <h3>Calça Jeans Estrelada</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=67'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/CalcaCargoDestroyed.jpg" alt="Colete de Couro">
+                <h3>Calça Cargo Destroyed</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=69'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/top_sutia.jpg" alt="Top Sutia">
+                <h3>Top Sutia</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=45'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/short_jeans_preto.jpg" alt="Shorts Jeans">
+                <h3>Shorts Jeans</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=13'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/camisetabegejesus.jpg" alt="Camiseta Jesus">
+                <h3>Camiseta Jesus</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=14'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/camisetacomtouca.jpg" alt="Camiseta com Touca">
+                <h3>Camiseta com Touca</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=15'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/camisetapretalisa.jpg" alt="Camiseta Lisa">
+                <h3>Camiseta Lisa</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=16'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/CalcaJeansSimples.webp" alt="Calça Jeans Simples">
+                <h3>Calça Jeans Simples</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=17'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/camisetaroxaestampa.jpg" alt="Camiseta Estampada">
+                <h3>Camiseta Estampada</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=19'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/cropped_semalca_transparente.jpg" alt="Cropped sem Alça">
+                <h3>Cropped sem Alça</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=20'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/conjuntofriopreto.jpg" alt="Conjunto Frio Preto">
+                <h3>Conjunto Frio Preto</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=21'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/conjuntopuma.jpg" alt="Conjunto Puma">
+                <h3>Conjunto Puma</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=22'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/conjuntoscorpiocinzapreto.jpg" alt="Conjunto Scorpio Cinza e Preto">
+                <h3>Conjunto Scorpio Cinza e Preto</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=23'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/corset_renda.jpg" alt="Corset Renda">
+                <h3>Corset Renda</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=25'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/corsetamarracoeslados.jpg" alt="Corset Amarração Lateral">
+                <h3>Corset Amarração Lateral</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=26'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/cropped_manga.jpg" alt="Cropped Manga">
+                <h3>Cropped Manga</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=27'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/cropped_tomaraquecaia.jpg" alt="Cropped Tomara que Caia">
+                <h3>Cropped Tomara que Caia</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=28'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/jaquetaestufada.jpg" alt="Jaqueta Estufada">
+                <h3>Jaqueta Estufada</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=31'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/kit2calcamoletom.jpg" alt="Kit 2 Calças Moleton">
+                <h3>Kit 2 Calças Moleton</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=32'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/kit3bermudas_preta_cinzaclaroeescuro.jpg" alt="Kit 3 Bermudas Preta e Cinza">
+                <h3>Kit 3 Bermudas Preta e Cinza</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=33'">Comprar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Calçados -->
+    <section id="calcados" style="padding: 80px 20px;">
+        <h3>Calçados</h3>
+        <div class="produtos-container">
+            <div class="produto">
+                <img src="img/all_star.jpg" alt="All Star">
+                <h3>Tênis All Star</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=1'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/bota_coturno.jpg" alt="Bota Coturno">
+                <h3>Bota Coturno</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=4'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/tenisadidaspreto.jpg" alt="Tênis Adidas Preto">
+                <h3>Tênis Adidas Preto</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=42'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/tenislilasbranco.jpg" alt="Tênis Lilás Branco">
+                <h3>Tênis Lilás Branco</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=43'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/tenismolecacanoalto.jpg" alt="Tênis Moleca Cano Alto">
+                <h3>Tênis Moleca Cano Alto</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=44'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/vans_oldskool_tenis.jpg" alt="Vans Old Skool Tênis">
+                <h3>Tênis Vans Old Skool</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=55'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/ChineloKennerPreto _ Rosa.jpg" alt="Chinelo Kenner">
+                <h3>Chinelo Kenner</h3>
+                <span class="preco">R$0,00</span>
+                <button onclick="window.location.href='produto.html?id=68'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/SandaliaMolecaPapete.jpg" alt="Papete Moleca com Strass">
+                <h3>Papete Moleca com Strass</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=58'">Comprar</button>
+            </div>
+    </section>
+
+    <!-- Seção Acessórios -->
+    <section id="acessorios" style="padding: 80px 20px;">
+        <h3>Acessórios</h3>
+        <div class="produtos-container">
+            <div class="produto">
+                <img src="img/cinto.jpg" alt="cinto de Couro">
+                <h3>Cinto de Couro</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=5'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/CintoCorselet.jpg" alt="Cinto Corselet">
+                <h3>Cinto Corselet</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=18'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/corrente_aranha.jpg" alt="Corrente Aranha">
+                <h3>Corrente Aranha</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=24'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/doischaveiros_aranha.jpg" alt="Dois Chaveiros Aranha">
+                <h3>Dois Chaveiros Aranha</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=29'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/faixa_cabelo.jpg" alt="Faixa de Cabelo">
+                <h3>Faixa de Cabelo</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=30'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/luva_arrastao.jpg" alt="Luva Arrastão">
+                <h3>Luva Arrastão</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=34'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/meias_brancas_pretas.jpg" alt="Meias Brancas e Pretas">
+                <h3>Meias Brancas e Pretas</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=35'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/mochila_pequena.jpg" alt="Mochila Pequena">
+                <h3>Mochila Pequena</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=36'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/RelogioMasculinoCouroPreto.webp" alt="Relógio Masculino Couro Preto">
+                <h3>Relógio Masculino Couro Preto</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=38'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/RelogioPretoCalvinClein.webp" alt="Relógio Preto Calvin Klein">
+                <h3>Relógio Preto Calvin Klein</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=39'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/toucabalaclava.jpg" alt="Touca Balaclava">
+                <h3>Touca Balaclava</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=46'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/toucabordadadecaveira.jpg" alt="Touca Bordada de Caveira">
+                <h3>Touca Bordada de Caveira</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=47'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/toucabordadaemojiderretendo.jpg" alt="Touca Bordada Emoji Derretendo">
+                <h3>Touca Bordada Emoji Derretendo</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=48'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/toucade_la_forrada.webp" alt="Touca de Lã Forrada">
+                <h3>Touca de Lã Forrada</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=49'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/toucaGraficaBordadaBracadeira.jpg" alt="Touca Gráfica Bordada">
+                <h3>Touca Gráfica Bordada</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=50'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/toucaPlanetaBordadaBracadeira.jpg" alt="Touca Planeta Bordada">
+                <h3>Touca Planeta Bordada</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=51'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/toucapradapreta.jpg" alt="Touca Prada">
+                <h3>Touca Prada</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=52'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/toucapretacomorelhinhas.jpg" alt="Touca Preta com Orelhinhas">
+                <h3>Touca Preta com Orelhinhas</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=53'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/toucascoracaobordado.jpg" alt="Kit Toucas com Corações Bordados">
+                <h3>Kit Toucas com Corações Bordados</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=54'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/amarelapretabrancatoucas.jpg" alt="Kit Toucas">
+                <h3>Kit Toucas</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=56'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/boneabaenvergadaargolas.jpg" alt="Boné Aba Envergada">
+                <h3>Boné Aba Envergada</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=57'">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="img/CintaElastiqueModeladora RedutorCintura.jpg" alt="Cinta Redutora">
+                <h3>Cinta Redutora</h3>
+                <span class="preco">R$ 0,00</span>
+                <button onclick="window.location.href='produto.html?id=59'">Comprar</button>
+            </div>
+
+    </section>
+
+
+    <!-- Seção Sobre Nós -->
+    <section id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Nosso brechó é dedicado a oferecer moda de qualidade e estilo único. Com uma seleção cuidadosa de produtos em
+            excelente estado, proporcionamos uma experiência de compra exclusiva e diferenciada. Cada peça é escolhida
+            com atenção aos detalhes, garantindo que você encontre roupas e acessórios que reflitam seu estilo pessoal e
+            singularidade.</p>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato">
+        <h2>Contato</h2>
+        <form>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Brechó Online. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Arquivo JS para a requisição AJAX -->
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra de Pesquisa</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilo do corpo */
+        body {
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Barra de pesquisa */
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: #ff6600;
+            box-shadow: 0 0 5px rgba(255, 102, 0, 0.7);
+        }
+
+        /* Botão de pesquisa */
+        .search-button {
+            position: absolute;
+            right: 5px;
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover {
+            background-color: #e65c00;
+        }
+
+        .search-button:active {
+            background-color: #cc5200;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de pesquisa -->
+    <div class="search-container">
+        <input type="text" class="search-box" id="searchInput" placeholder="Digite o que deseja procurar...">
+        <button class="search-button" id="searchButton">🔍</button>
+    </div>
+
+    <script>
+        // Função para lidar com o evento de pesquisa
+        const searchButton = document.getElementById('searchButton');
+        const searchInput = document.getElementById('searchInput');
+
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value;
+            if (query) {
+                // Aqui, você pode adicionar a lógica de pesquisa, como redirecionar para outra página ou filtrar conteúdo
+                alert(`Você está pesquisando por: ${query}`);
+            } else {
+                alert('Por favor, insira algo na barra de pesquisa.');
+            }
+        });
+
+        // Função para permitir pesquisa ao pressionar Enter
+        searchInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                searchButton.click();
+            }
+        });
+    </script>
+</body>
+
+</html>

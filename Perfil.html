@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Corpo */
+        body {
+            background: linear-gradient(to bottom, #31246d, #f5f5f5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Container */
+        .container {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 350px;
+            max-height: 95vh;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Foto de perfil */
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .profile-photo input[type="file"] {
+            display: none;
+        }
+
+        .user-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .user-name {
+            font-size: 18px;
+            color: #31246d;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .user-email {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #31246d;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #31246d;
+            outline: none;
+        }
+
+        .btn-submit {
+            background-color: #31246d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #5147a6;
+        }
+
+        .product-list {
+            margin-top: 15px;
+        }
+
+        .product-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 8px;
+            margin-bottom: 8px;
+            transition: transform 0.3s;
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-details {
+            display: flex;
+            align-items: center;
+        }
+
+        .product-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .product-info {
+            flex-grow: 1;
+        }
+
+        .product-info span {
+            display: block;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #ff1a1a;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 12px;
+            color: #31246d;
+            font-weight: bold;
+            margin: 0 8px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            background-color: #31246d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #5147a6;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+                max-width: 100%;
+            }
+
+            .profile-photo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .user-name {
+                font-size: 16px;
+            }
+
+            .form-title {
+                font-size: 14px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 10px;
+            }
+
+            .btn-submit {
+                font-size: 12px;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Foto e informações do usuário -->
+        <label for="profile-photo" class="profile-photo">
+            <input type="file" id="profile-photo">
+            <span id="profile-photo-text">A</span>
+        </label>
+        <div class="user-info">
+            <div class="user-name" id="user-name">Aline R...</div>
+            <div class="user-email" id="user-email">aline.b@email.com</div>
+        </div>
+
+        <!-- Formulário de cadastro de produtos -->
+        <div>
+            <h2 class="form-title">Cadastrar Produto</h2>
+            <form id="product-form">
+                <div class="form-group">
+                    <label for="product-name">Nome do Produto</label>
+                    <input type="text" id="product-name" placeholder="Digite o nome do produto" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Descrição</label>
+                    <textarea id="product-description" rows="3" placeholder="Digite a descrição do produto" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Imagem</label>
+                    <input type="file" id="product-image" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Preço</label>
+                    <input type="text" id="product-price" placeholder="Digite o preço" required>
+                </div>
+                <button type="submit" class="btn-submit">Cadastrar</button>
+            </form>
+        </div>
+
+        <!-- Lista de produtos -->
+        <div class="product-list" id="product-list">
+            <h2 class="form-title">Produtos Cadastrados</h2>
+        </div>
+
+        <!-- Links de navegação -->
+        <div class="nav-links">
+        </div>
+        <button class="back-button" onclick="window.history.back()">Voltar</button>
+    </div>
+
+    <script>
+        const profilePhotoInput = document.getElementById("profile-photo");
+        const profilePhotoText = document.getElementById("profile-photo-text");
+        const userName = document.getElementById("user-name");
+        const userEmail = document.getElementById("user-email");
+        const productForm = document.getElementById("product-form");
+        const productList = document.getElementById("product-list");
+
+        // Função para carregar a foto do perfil
+        profilePhotoInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    profilePhotoText.style.display = "none"; // Esconde a inicial
+                    const img = document.createElement("img");
+                    img.src = reader.result;
+                    img.style.width = "100%";
+                    img.style.height = "100%";
+                    img.style.objectFit = "cover";
+                    profilePhotoText.parentNode.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Função para adicionar o produto
+        productForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const productName = document.getElementById("product-name").value;
+            const productDescription = document.getElementById("product-description").value;
+            const productImage = document.getElementById("product-image").files[0];
+            const productPrice = document.getElementById("product-price").value;
+
+            if (productImage) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const productDiv = document.createElement("div");
+                    productDiv.classList.add("product-item");
+
+                    const productImg = document.createElement("img");
+                    productImg.src = reader.result;
+                    productImg.classList.add("product-image");
+
+                    const productInfo = document.createElement("div");
+                    productInfo.classList.add("product-info");
+
+                    const productNameSpan = document.createElement("span");
+                    productNameSpan.textContent = `Nome: ${productName}`;
+
+                    const productDescriptionSpan = document.createElement("span");
+                    productDescriptionSpan.textContent = `Descrição: ${productDescription}`;
+
+                    const productPriceSpan = document.createElement("span");
+                    productPriceSpan.textContent = `Preço: ${productPrice}`;
+
+                    const deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Excluir";
+                    deleteButton.classList.add("delete-btn");
+                    deleteButton.addEventListener("click", function () {
+                        productDiv.remove();
+                    });
+
+                    productInfo.appendChild(productNameSpan);
+                    productInfo.appendChild(productDescriptionSpan);
+                    productInfo.appendChild(productPriceSpan);
+                    productInfo.appendChild(deleteButton);
+
+                    productDiv.appendChild(productImg);
+                    productDiv.appendChild(productInfo);
+
+                    productList.appendChild(productDiv);
+                };
+                reader.readAsDataURL(productImage);
+            }
+        });
+    </script>
+</body>
+
+</html>

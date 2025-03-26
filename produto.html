@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            max-width: 55px;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #fff;
+            margin-right: 10px;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        header nav h1 {
+            font-size: 28px;
+            letter-spacing: 1.5px;
+            color: #fff;
+            font-family: 'Dancing Script', cursive;
+            margin-right: 40px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin-left: auto;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Seção do Produto */
+        #detalhes-produto {
+            flex: 1;
+            padding: 100px 20px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .produto-detalhe {
+            max-width: 280px;
+            /* Reduz a largura máxima */
+            width: 90%;
+            /* Mantém o layout responsivo */
+            padding: 20px;
+            /* Reduz o padding para compactar o conteúdo */
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+            /* Ajuste proporcional */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            /* Centraliza os elementos */
+            text-align: center;
+        }
+
+        .produto-detalhe img {
+            max-width: 80%;
+            /* Ajusta a largura máxima da imagem */
+            height: auto;
+            /* Mantém as proporções */
+            border-radius: 10px;
+            margin-bottom: 15px;
+            /* Menor espaçamento abaixo da imagem */
+        }
+
+        .produto-detalhe h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #4021a5;
+        }
+
+        .produto-detalhe p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .produto-detalhe .preco {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .produto-detalhe button {
+            background-color: #4021a5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .produto-detalhe button:hover {
+            background-color: #0f49b4;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            margin-top: auto;
+        }
+    </style>
+
+    <script>
+        function obterDadosProduto() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            // Dados simulados para os produtos
+            const produtos = {
+                1: {
+                    nome: 'Tênis All Star',
+                    descricao: 'Tênis clássico em excelente estado. Tamanho 39',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/all_star.jpg'
+                },
+                2: {
+                    nome: 'Bermuda',
+                    descricao: 'Bermuda jeans, estilo casual.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/bermuda.jpg'
+                },
+                3: {
+                    nome: 'Blusa de Frio Moletom',
+                    descricao: 'Moletom com toque macio e acabamento de alta qualidade.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/blusa_frio_moleton.jpg'
+                },
+                4: {
+                    nome: 'Bota Coturno',
+                    descricao: 'Bota coturno de couro, estilo rocker.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/bota_coturno.jpg'
+                },
+                5: {
+                    nome: 'Cinto de Couro',
+                    descricao: 'Couro legítimo, ajustável, com fivela simples e acabamento de qualidade.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/cinto.jpg'
+                },
+                6: {
+                    nome: 'Vestido de Mangas Longas',
+                    descricao: 'Vestido de mangas longas, corte rodado e acabamento delicado.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/vestido.jpg'
+                },
+                7: {
+                    nome: 'Saia com Fenda',
+                    descricao: 'Saia com fenda curta, oferecendo um toque de estilo e sofisticação.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/saia.jpg'
+                },
+                8: {
+                    nome: 'Regata de Alcinha',
+                    descricao: 'Regata leve, de corte básico e tecido macio.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/regata_alcinha.jpg'
+                },
+                9: {
+                    nome: 'Macacão',
+                    descricao: 'Macacão com modelagem impecável, para um visual clean e sofisticado.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/macacao.jpg'
+                },
+                10: {
+                    nome: 'Cropped de Couro',
+                    descricao: 'Cropped de couro sintético com acabamento de alta qualidade, perfeito para compor looks ousados.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/CroppedCorsetTopCouroLycraBojoAlça.jpg'
+                },
+                11: {
+                    nome: 'Cropped Regata Simples',
+                    descricao: 'Cropped básico, com corte reto e tecido leve, oferecendo conforto e estilo.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/cropped_regata.jpg'
+                },
+                12: {
+                    nome: 'Vestido com Alças de Amarrar',
+                    descricao: 'Vestido ajustável com alças de amarrar, com material fluido e acabamento refinado.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/vestido_alca_amarrar.jpg'
+                },
+                13: {
+                    nome: 'Shorts Jeans',
+                    descricao: 'Shorts jeans de corte tradicional, prático e confortável, com tecido resistente que garante durabilidade.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/short_jeans_preto.jpg'
+                },
+                14: {
+                    nome: 'Camiseta Jesus',
+                    descricao: 'Camiseta de algodão, com estampa religiosa centralizada. Tecido macio e confortável, com modelagem reta e mangas curtas.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/camisetabegejesus.jpg'
+                },
+                15: {
+                    nome: 'Camiseta com Touca',
+                    descricao: 'Camiseta em malha leve, com capuz integrado. Corte descontraído e mangas curtas, combinando estilo e praticidade.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/camisetacomtouca.jpg'
+                },
+                16: {
+                    nome: 'Camiseta Lisa',
+                    descricao: 'Camiseta básica de algodão com corte tradicional. Tecido macio e respirável, ideal para uso diário. Acabamento simples e bordas reforçadas. ',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/camisetapretalisa.jpg'
+                },
+                17: {
+                    nome: 'Calça Jeans Simples',
+                    descricao: ' Calça jeans de corte reto, em tecido de alta resistência. Lavagem tradicional, com bolsos funcionais e passadores para cinto.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/CalcaJeansSimples.webp'
+                },
+                18: {
+                    nome: 'Cinto Corselet',
+                    descricao: 'Cinto estilo corselet, de amarrar com cordão, ideal para criar uma silhueta definida com um toque vintage.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/CintoCorselet.jpg'
+                },
+                19: {
+                    nome: 'Camiseta Estampada',
+                    descricao: 'Camiseta com estampa, feita de tecido leve, ideal para um visual descontraído.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/camisetaroxaestampa.jpg'
+                },
+                20: {
+                    nome: 'Cropped sem Alça',
+                    descricao: 'Cropped sem alças em tecido leve e transparente, perfeito para compor looks modernos e ousados.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/cropped_semalca_transparente.jpg'
+                },
+                21: {
+                    nome: 'Conjunto Frio Preto',
+                    descricao: 'Conjunto de moletom com capuz, confortável e perfeito para dias frios.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/conjuntofriopreto.jpg'
+                },
+                22: {
+                    nome: 'Conjunto Puma',
+                    descricao: 'Conjunto esportivo da marca Puma, com tecido respirável e ajuste confortável.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/conjuntopuma.jpg'
+                },
+                23: {
+                    nome: 'Conjunto Scorpio Cinza e Preto',
+                    descricao: 'Conjunto versátil, com detalhes em preto, ideal para atividades físicas e lazer.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/conjuntoscorpiocinzapreto.jpg'
+                },
+                24: {
+                    nome: 'Corrente Aranha',
+                    descricao: 'Corrente estilosa inspirada no universo do Homem-Aranha, feita em metal resistente.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/corrente_aranha.jpg'
+                },
+                25: {
+                    nome: 'Corset Renda',
+                    descricao: 'Corset delicado em renda, perfeito para ocasiões especiais e combinações ousadas.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/corset_renda.jpg'
+                },
+                26: {
+                    nome: 'Corset Amarração Lateral',
+                    descricao: 'Corset com detalhes de amarração lateral, ideal para acentuar a cintura.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/corsetamarracoeslados.jpg'
+                },
+                27: {
+                    nome: 'Cropped Manga',
+                    descricao: 'Cropped de manga longa, feito em tecido leve e respirável, perfeito para dias frescos.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/cropped_manga.jpg'
+                },
+                28: {
+                    nome: 'Cropped Tomara que Caia',
+                    descricao: 'Cropped tomara que caia em tecido suave, ideal para looks de verão.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/cropped_tomaraquecaia.jpg'
+                },
+                29: {
+                    nome: 'Dois Chaveiros Aranha',
+                    descricao: 'Conjunto de dois chaveiros inspirados no Homem-Aranha, feito em metal e resina.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/doischaveiros_aranha.jpg'
+                },
+                30: {
+                    nome: 'Faixa de Cabelo',
+                    descricao: 'Faixa de cabelo elástica, com estampa divertida, perfeita para o dia a dia.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/faixa_cabelo.jpg'
+                },
+                31: {
+                    nome: 'Jaqueta Estufada',
+                    descricao: 'Jaqueta estufada, ideal para proteger contra o frio, com design moderno.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/jaquetaestufada.jpg'
+                },
+                32: {
+                    nome: 'Kit 2 Calças Moleton',
+                    descricao: 'Conjunto com duas calças de moleton, confortáveis e práticas para uso diário.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/kit2calcamoletom.jpg'
+                },
+                33: {
+                    nome: 'Kit 3 Bermudas Preta e Cinza',
+                    descricao: 'Conjunto com três bermudas em cores neutras, essenciais para o verão.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/kit3bermudas_preta_cinzaclaroeescuro.jpg'
+                },
+                34: {
+                    nome: 'Luva Arrastão',
+                    descricao: 'Luva arrastão para compor looks ousados e fashionistas.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/luva_arrastao.jpg'
+                },
+                35: {
+                    nome: 'Meias Brancas e Pretas',
+                    descricao: 'Kit com meias brancas e pretas, confortáveis e ideais para o dia a dia.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/meias_brancas_pretas.jpg'
+                },
+                36: {
+                    nome: 'Mochila Pequena',
+                    descricao: 'Mochila pequena, ideal para uso diário, com design prático e moderno.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/mochila_pequena.jpg'
+                },
+                37: {
+                    nome: 'Moletom Adidas Fino',
+                    descricao: 'Moletom da Adidas, fino e confortável, ideal para looks esportivos.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/moletonadidasfino.jpg'
+                },
+                38: {
+                    nome: 'Relógio Masculino Couro Preto',
+                    descricao: 'Relógio masculino com pulseira de couro preto, estilo clássico e elegante.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/RelogioMasculinoCouroPreto.webp'
+                },
+                39: {
+                    nome: 'Relógio Preto Calvin Klein',
+                    descricao: 'Relógio Calvin Klein, com design sofisticado e pulseira de metal.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/RelogioPretoCalvinClein.webp'
+                },
+                40: {
+                    nome: 'Saia Longa',
+                    descricao: 'Saia longa, fluida e elegante, perfeita para diversas ocasiões.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/saia_longa.jpg'
+                },
+                41: {
+                    nome: 'Short Jeans Preto',
+                    descricao: 'Short jeans preto, estilo casual e confortável para o verão.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/short_jeans_preto.jpg'
+                },
+                42: {
+                    nome: 'Tênis Adidas Preto',
+                    descricao: 'Tênis Adidas, modelo clássico em preto, ideal para o dia a dia.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/tenisadidaspreto.jpg'
+                },
+                43: {
+                    nome: 'Tênis Lilás Branco',
+                    descricao: 'Tênis lilás e branco, conforto e estilo para suas atividades diárias.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/tenislilasbranco.jpg'
+                },
+                44: {
+                    nome: 'Tênis Moleca Cano Alto',
+                    descricao: 'Tênis Moleca cano alto, estilo moderno e confortável.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/tenismolecacanoalto.jpg'
+                },
+                45: {
+                    nome: 'Top Sutiã',
+                    descricao: 'Top sutiã, ideal para uso diário ou como parte de um look mais ousado.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/top_sutia.jpg'
+                },
+                46: {
+                    nome: 'Touca Balaclava',
+                    descricao: 'Touca balaclava, perfeita para dias frios, mantendo o estilo e o calor.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/toucabalaclava.jpg'
+                },
+                47: {
+                    nome: 'Touca Bordada Caveira',
+                    descricao: 'Touca bordada com estampa de caveira, para um look ousado e moderno.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/toucabordadadecaveira.jpg'
+                },
+                48: {
+                    nome: 'Touca Bordada Emoji Derretendo',
+                    descricao: 'Touca com bordado de emoji derretendo, divertida e estilosa.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/toucabordadaemojiderretendo.jpg'
+                },
+                49: {
+                    nome: 'Touca de Lã Forrada',
+                    descricao: 'Touca forrada em lã, quentinha e confortável para o inverno.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/toucade_la_forrada.webp'
+                },
+                50: {
+                    nome: 'Touca Gráfica Bordada',
+                    descricao: 'Touca com estampa gráfica e bordada, perfeita para looks urbanos.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/toucaGraficaBordadaBracadeira.jpg'
+                },
+                51: {
+                    nome: 'Touca Planeta Bordada',
+                    descricao: 'Touca com bordado de planeta, ideal para quem ama o espaço.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/toucaPlanetaBordadaBracadeira.jpg'
+                },
+                52: {
+                    nome: 'Touca Prada',
+                    descricao: 'Touca preta clássica, essencial para o inverno e combinações diversas.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/toucapradapreta.jpg'
+                },
+                53: {
+                    nome: 'Touca Preta com Orelhinhas',
+                    descricao: 'Touca preta com orelhinhas, perfeita para um look fofo e divertido.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/toucapretacomorelhinhas.jpg'
+                },
+                54: {
+                    nome: 'Kit Toucas com Corações Bordados',
+                    descricao: 'Toucas com bordados de coração, nas cores preta e branca, ideais para looks charmosos e estilosos.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/toucascoracaobordado.jpg'
+                },
+                55: {
+                    nome: 'Tênis Vans Old Skool',
+                    descricao: 'Tênis Vans Old Skool, clássico e atemporal, ideal para qualquer ocasião.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/vans_oldskool_tenis.jpg'
+                },
+                56: {
+                    nome: 'Kit Toucas',
+                    descricao: 'Toucas amarela, preta e branca, perfeitas para aquecer e complementar seu estilo com conforto e versatilidade!',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/amarelapretabrancatoucas.jpg'
+                },
+                57: {
+                    nome: 'Boné Aba Envergada',
+                    descricao: 'Boné com aba envergada e detalhe de argolas na aba. Confortável e durável, ideal para completar seu visual com um acessório único e autêntico.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/boneabaenvergadaargolas.jpg'
+                },
+                58: {
+                    nome: 'Papete Moleca com Strass',
+                    descricao: 'Sandália Papete Feminina com Strass Feminina Combinando estilo e praticidade, essas sandálias papetes proporcionam conforto ao caminhar.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/SandaliaMolecaPapete.jpg'
+                },
+                59: {
+                    nome: 'Cinta Redutora',
+                    descricao: 'Cinta redutora que modela a silhueta com conforto e compressão média. Ideal para uso diário, proporcionando segurança e elegância.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/CintaElastiqueModeladora RedutorCintura.jpg'
+                },
+                60: {
+                    nome: 'Colete Estofado',
+                    descricao: 'Colete estofado com touca, super fofinho e confortável. Ideal para dias frios com muito estilo!',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/ColeteMasculinoPretoLife.jpg'
+                },
+                61: {
+                    nome: 'Colete com Bolsos',
+                    descricao: 'Colete com quatro bolsos grandes e práticos. Perfeito para compor looks versáteis e utilitários!',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/ColeteMasculinoPretoParaibuna.jpg'
+                },
+                62: {
+                    nome: 'Bermuda Los Angeles',
+                    descricao: 'Bermuda mais solta e confortável, com uma estampa "Los Angeles" grande na frente. Ideal para um estilo casual e despojado!',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/bermudabrancalosangeles.jpg'
+                },
+                63: {
+                    nome: 'Blusa de Frio High',
+                    descricao: 'Blusa de frio moletom "High", com bolso frontal e touca ajustável. Perfeita para um visual confortável e estiloso nos dias frios!',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/blusafrio_high_moletom.jpg'
+                },
+                64: {
+                    nome: 'Calça Jeans Cargo',
+                    descricao: 'Calça jeans de lavagem escura, modelagem mais larga, com 4 bolsos grandes laterais. Confortável e estilosa!',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/CalcaJeansGlitch.jpg'
+                },
+                65: {
+                    nome: 'Camiseta Verde Lisa',
+                    descricao: 'Camiseta lisa de tecido resistente, com acabamento durável e toque confortável. Ideal para quem busca praticidade e qualidade em um design simples e versátil.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/camisetaverdelisa.jpg'
+                },
+                66: {
+                    nome: 'Colete de Couro',
+                    descricao: 'Colete de couro sintético, ajustado ao corpo, com um design elegante e detalhes sutis. Textura do material com uma modelagem mais colada.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/ColeteFemininoCouroSintéticoZephyra.jpg'
+                },
+                67: {
+                    nome: 'Calça Jeans Estrelada',
+                    descricao: 'Calça cargo de lavagem média, com estampas de estrelas grandes e dois bolsos laterais. Um design casual e moderno, ideal para quem busca conforto e estilo.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/CalcaJeansCinzaEstrelas.jpg'
+                },
+                68: {
+                    nome: 'Chinelo Kenner',
+                    descricao: 'Chinelo rosa e preto com correia em tecido, confortável e com ótima absorção de impacto.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/ChineloKennerPreto _ Rosa.jpg'
+                },
+                69: {
+                    nome: 'Calça Cargo Destroyed',
+                    descricao: 'Calça cargo com 12 bolsos, sendo 3 com zíper. Praticidade e estilo em qualquer ocasião. Confeccionada em tecido resistente e versátil.',
+                    preco: 'R$ 0,00',
+                    imagem: 'img/CalcaCargoDestroyed.jpg'
+                },
+
+            };
+
+            return produtos[id] || {};
+        }
+
+        function carregarProduto() {
+            const produto = obterDadosProduto();
+            if (!produto.nome) {
+                document.getElementById('detalhes-produto').innerHTML = '<p>Produto não encontrado.</p>';
+                return;
+            }
+
+            document.getElementById('nome-produto').innerText = produto.nome;
+            document.getElementById('descricao-produto').innerText = produto.descricao;
+            document.getElementById('preco-produto').innerText = produto.preco;
+            document.getElementById('imagem-produto').src = produto.imagem;
+        }
+
+        window.onload = carregarProduto;
+    </script>
+
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <img src="img/logos_etc/logo1300vs800px.png" alt="Logo Brechó Online">
+        </div>
+        <nav>
+            <h1>Brechó Online</h1>
+            <ul>
+                <li><a href="index.html">x</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Detalhes do Produto -->
+    <section id="detalhes-produto"
+        style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+        <div class="produto-detalhe"
+            style="max-width: 500px; text-align: center; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); padding: 30px; width: 100%;">
+            <img id="imagem-produto" src="" alt="Produto"
+                style="max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 20px;">
+            <h2 id="nome-produto" style="font-size: 24px; margin-bottom: 10px; color: #4021a5;"></h2>
+            <p id="descricao-produto" style="font-size: 16px; color: #555; margin-bottom: 20px; text-align: center;">
+            </p>
+            <span id="preco-produto" class="preco"
+                style="font-size: 20px; font-weight: bold; margin-bottom: 15px; color: #000; display: block;">R$
+                0,00</span>
+            <button class="btn" onclick="window.location.href='confirmacao.html'"
+                style="background-color: #4021a5; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">Finalizar
+                Compra</button>
+        </div>
+    </section>
+    </div>
+    </section>
+    </div>
+    </section>
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Brechó Online. Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>

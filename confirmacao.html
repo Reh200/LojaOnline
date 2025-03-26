@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Compra</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilo do corpo */
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header .logo img {
+            max-width: 60px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        header nav h1 {
+            font-size: 32px;
+            color: #fff;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Botão "X" para voltar */
+        .back-home {
+            color: #fff;
+            font-size: 26px;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        .back-home:hover {
+            color: #ff4d4d;
+        }
+
+        /* Seção de Confirmação */
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            padding: 100px 20px 60px;
+            text-align: center;
+            background-color: #fff;
+            margin-top: 80px;
+        }
+
+        section h2 {
+            font-size: 36px;
+            color: #2b2a2a;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8); /* Brilho nas letras */
+        }
+
+        section p {
+            font-size: 20px;
+            color: #4f4f50;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+
+        /* Botão para WhatsApp */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #25d366;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #20b25b;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: auto;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <img src="img/logos_etc/logo1300vs800px.png" alt="Logo Brechó Online">
+        </div>
+        <nav>
+            <h1>Brechó Online</h1>
+        </nav>
+        <a href="index.html" class="back-home">X</a>
+    </header>
+
+    <!-- Seção de Confirmação -->
+    <section>
+        <h2>Pedido Realizado!</h2>
+        <p>Obrigado pela compra! Você será redirecionado para o WhatsApp para finalizar o pagamento.</p>
+        <a href="https://api.whatsapp.com/send?phone=123456789&text=Olá!%20Gostaria%20de%20finalizar%20a%20compra." class="btn">Finalizar no WhatsApp</a>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Brechó Online. Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>
