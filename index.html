@@ -23,6 +23,18 @@
             </ul>
         </nav>
 
+        <!-- Barra de Pesquisa -->
+        <div class="barra-pesquisa">
+            <input type="text" id="barra-pesquisa" placeholder="Pesquisar produtos..." onkeyup="pesquisar()">
+            <button id="btn-pesquisar" onclick="pesquisar()">Pesquisar</button>
+        </div>
+        <!-- Ícone de Perfil -->
+        <div class="perfil">
+            <a href="Perfil.html" title="Acessar Perfil">
+                <img src="img/logos_etc/logodelobo.png" alt="Perfil">
+            </a>
+        </div>
+
         <style>
             /* Reset básico */
             * {
@@ -103,44 +115,44 @@
                 background-color: rgba(255, 255, 255, 0.1);
             }
 
-            /* Estilos para a barra de pesquisa */
+            /* Estilo da barra de pesquisa */
             .barra-pesquisa {
                 display: flex;
-                justify-content: center;
                 align-items: center;
-                margin: 20px;
-            }
-
-            .barra-pesquisa input {
-                width: 250px;
-                padding: 6px;
-                font-size: 16px;
-                border-radius: 5px;
+                background-color: #fff;
+                border-radius: 20px;
                 border: 1px solid #ccc;
-                margin-right: 10px;
+                padding: 5px 15px;
+                width: 300px;
+                margin-left: auto;
+                /* Adicionado para alinhar à direita */
             }
 
+            /* Estilo do input de pesquisa */
+            .barra-pesquisa input {
+                border: none;
+                outline: none;
+                padding: 8px 10px;
+                font-size: 16px;
+                width: 100%;
+                /* Alterado para 100% para preencher todo o espaço disponível */
+                border-radius: 20px;
+            }
+
+            /* Estilo do botão de pesquisa */
             .barra-pesquisa button {
-                padding: 7px 15px;
-                background-color: #4021a5;
+                background-color: #007bff;
                 color: white;
                 border: none;
-                font-size: 13px;
-                border-radius: 3px;
+                padding: 10px 15px;
+                font-size: 16px;
+                margin-left: 10px;
+                border-radius: 20px;
                 cursor: pointer;
-                transition: background-color 0.3s;
             }
 
             .barra-pesquisa button:hover {
-                background-color: #0f49b4;
-            }
-
-            /* Estilo para os resultados da pesquisa */
-            #resultados {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                margin-top: 20px;
+                background-color: #0056b3;
             }
 
             /* Seção Produtos */
@@ -394,22 +406,10 @@
             }
         </style>
 
-        <!-- Barra de Pesquisa -->
-        <div class="barra-pesquisa">
-            <input type="text" id="barra-pesquisa" placeholder="Pesquisar produtos..." onkeyup="pesquisar()">
-            <button id="btn-pesquisar" onclick="pesquisar()">Pesquisar</button>
-        </div>
-        <!-- Ícone de Perfil -->
-        <div class="perfil">
-            <a href="Perfil.html" title="Acessar Perfil">
-                <img src="img/logos_etc/logodelobo.png" alt="Perfil">
-            </a>
-        </div>
-
-        <!-- Área onde os resultados da pesquisa serão exibidos -->
-        <div id="resultados"></div>
-
     </header>
+
+    <!-- Área onde os resultados da pesquisa serão exibidos -->
+    <div id="resultados"></div>
 
     <!-- Subcabeçalho de Categorias -->
     <div class="subcabecalho">
@@ -861,6 +861,29 @@
             </div>
 
     </section>
+
+    <script>
+        function pesquisar() {
+            // Obtém o valor da pesquisa
+            const pesquisa = document.getElementById("barra-pesquisa").value.toLowerCase();
+
+            // Obtém todos os produtos
+            const produtos = document.querySelectorAll(".produto");
+
+            // Loop através dos produtos
+            produtos.forEach((produto) => {
+                // Obtém o nome do produto
+                const nomeProduto = produto.querySelector("h3").textContent.toLowerCase();
+
+                // Verifica se o nome do produto contém o texto de pesquisa
+                if (nomeProduto.includes(pesquisa)) {
+                    produto.style.display = "block"; // Exibe o produto se corresponder
+                } else {
+                    produto.style.display = "none"; // Esconde o produto se não corresponder
+                }
+            });
+        }
+    </script>
 
 
     <!-- Seção Sobre Nós -->
