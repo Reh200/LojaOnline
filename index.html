@@ -115,44 +115,61 @@
                 background-color: rgba(255, 255, 255, 0.1);
             }
 
-            /* Estilo da barra de pesquisa */
+            /* Estilos para tornar a barra de pesquisa mais compacta */
             .barra-pesquisa {
                 display: flex;
                 align-items: center;
                 background-color: #fff;
-                border-radius: 20px;
+                border-radius: 15px;
                 border: 1px solid #ccc;
-                padding: 5px 15px;
-                width: 300px;
+                padding: 3px 8px;
+                width: 100%;
+                max-width: 250px;
+                /* Reduzi o tamanho máximo */
                 margin-left: auto;
-                /* Adicionado para alinhar à direita */
             }
 
-            /* Estilo do input de pesquisa */
             .barra-pesquisa input {
                 border: none;
                 outline: none;
-                padding: 8px 10px;
-                font-size: 16px;
+                padding: 5px 8px;
+                font-size: 14px;
                 width: 100%;
-                /* Alterado para 100% para preencher todo o espaço disponível */
-                border-radius: 20px;
+                border-radius: 15px;
             }
 
-            /* Estilo do botão de pesquisa */
             .barra-pesquisa button {
-                background-color: #007bff;
+                background-color: #400e6e;
                 color: white;
                 border: none;
-                padding: 10px 15px;
-                font-size: 16px;
-                margin-left: 10px;
-                border-radius: 20px;
+                padding: 5px 8px;
+                font-size: 14px;
+                margin-left: 3px;
+                border-radius: 15px;
                 cursor: pointer;
             }
 
             .barra-pesquisa button:hover {
-                background-color: #0056b3;
+                background-color: #4500b3;
+            }
+
+            /* Responsividade */
+            @media (max-width: 480px) {
+                .barra-pesquisa {
+                    max-width: 80%;
+                    /* Ocupa menos espaço na tela pequena */
+                    padding: 3px;
+                }
+
+                .barra-pesquisa input {
+                    font-size: 12px;
+                    padding: 4px 6px;
+                }
+
+                .barra-pesquisa button {
+                    padding: 4px 6px;
+                    font-size: 12px;
+                }
             }
 
             /* Seção Produtos */
@@ -396,6 +413,8 @@
                 position: relative;
                 display: flex;
                 align-items: center;
+                margin-left: 15px;
+                /* Adiciona um espaçamento maior entre a barra de pesquisa e o ícone */
             }
 
             .perfil img {
