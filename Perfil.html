@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
-    <style>
+    <STyle>
         /* Reset básico */
         * {
             margin: 0;
@@ -22,7 +22,6 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            overflow: hidden;
         }
 
         /* Container */
@@ -30,13 +29,26 @@
             background-color: #fff;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-            width: 350px;
-            max-height: 95vh;
-            overflow: hidden;
+            padding: 20px;
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            max-height: 90vh;
+            overflow-y: auto;
             animation: fadeIn 0.8s ease-in-out;
         }
 
+        /* Ajuste para evitar rolagem excessiva */
+        .container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .container::-webkit-scrollbar-thumb {
+            background-color: #31246d;
+            border-radius: 10px;
+        }
+
+        /* Animação */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -70,6 +82,7 @@
             display: none;
         }
 
+        /* Informações do usuário */
         .user-info {
             text-align: center;
             margin-bottom: 20px;
@@ -77,9 +90,8 @@
 
         .user-name {
             font-size: 18px;
-            color: #31246d;
-            margin-bottom: 5px;
             font-weight: bold;
+            color: #31246d;
         }
 
         .user-email {
@@ -87,12 +99,13 @@
             color: #666;
         }
 
+        /* Formulário */
         .form-title {
+            text-align: center;
             font-size: 16px;
             font-weight: bold;
             color: #31246d;
             margin-bottom: 10px;
-            text-align: center;
         }
 
         .form-group {
@@ -101,26 +114,28 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            color: #555;
             font-weight: bold;
+            color: #555;
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             border-color: #31246d;
             outline: none;
         }
 
+        /* Botão */
         .btn-submit {
             background-color: #31246d;
             color: #fff;
@@ -130,33 +145,60 @@
             font-size: 14px;
             cursor: pointer;
             width: 100%;
-            transition: background-color 0.3s;
         }
 
         .btn-submit:hover {
             background-color: #5147a6;
         }
 
-        .product-list {
-            margin-top: 15px;
+        /* Categorias */
+        .product-category {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
+        /* Cores diferentes para cada categoria */
+        .roupas {
+            background-color: #e0f7fa;
+        }
+
+        /* Azul claro */
+        .calcados {
+            background-color: #ffe0b2;
+        }
+
+        /* Laranja claro */
+        .acessorios {
+            background-color: #e1bee7;
+        }
+
+        /* Roxo claro */
+
+        .category-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #31246d;
+        }
+
+        /* Produtos */
         .product-item {
-            background-color: #f9f9f9;
+            background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 8px;
             margin-bottom: 8px;
-            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
         }
 
         .product-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-details {
-            display: flex;
-            align-items: center;
+            transform: translateY(-3px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         .product-image {
@@ -167,25 +209,21 @@
             margin-right: 10px;
         }
 
-        .product-info {
-            flex-grow: 1;
-        }
-
         .product-info span {
             display: block;
             font-size: 12px;
             color: #333;
         }
 
+        /* Botão de excluir */
         .delete-btn {
             background-color: #ff4d4d;
             color: #fff;
             border: none;
+            padding: 6px;
             border-radius: 3px;
-            padding: 5px 8px;
             font-size: 12px;
             cursor: pointer;
-            margin-top: 8px;
             transition: background-color 0.3s;
         }
 
@@ -193,23 +231,7 @@
             background-color: #ff1a1a;
         }
 
-        .nav-links {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-size: 12px;
-            color: #31246d;
-            font-weight: bold;
-            margin: 0 8px;
-        }
-
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-
+        /* Botão de voltar */
         .back-button {
             background-color: #31246d;
             color: #fff;
@@ -220,35 +242,33 @@
             font-size: 14px;
             width: 100%;
             margin-top: 15px;
-            text-align: center;
         }
 
         .back-button:hover {
             background-color: #5147a6;
         }
 
+        /* Responsividade */
         @media (max-width: 480px) {
             .container {
-                padding: 10px;
+                padding: 12px;
                 max-width: 100%;
+                max-height: 85vh;
             }
 
-            .profile-photo {
-                width: 80px;
-                height: 80px;
-            }
-
-            .user-name {
-                font-size: 16px;
-            }
-
-            .form-title {
+            .category-title {
                 font-size: 14px;
             }
 
-            .form-group input,
-            .form-group textarea {
-                font-size: 10px;
+            .product-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .product-image {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 10px;
             }
 
             .btn-submit {
@@ -256,7 +276,7 @@
                 padding: 6px;
             }
         }
-    </style>
+    </STyle>
 </head>
 
 <body>
@@ -272,47 +292,61 @@
         </div>
 
         <!-- Formulário de cadastro de produtos -->
-        <div>
-            <h2 class="form-title">Cadastrar Produto</h2>
-            <form id="product-form">
-                <div class="form-group">
-                    <label for="product-name">Nome do Produto</label>
-                    <input type="text" id="product-name" placeholder="Digite o nome do produto" required>
-                </div>
-                <div class="form-group">
-                    <label for="product-description">Descrição</label>
-                    <textarea id="product-description" rows="3" placeholder="Digite a descrição do produto" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="product-image">Imagem</label>
-                    <input type="file" id="product-image" accept="image/*" required>
-                </div>
-                <div class="form-group">
-                    <label for="product-price">Preço</label>
-                    <input type="text" id="product-price" placeholder="Digite o preço" required>
-                </div>
-                <button type="submit" class="btn-submit">Cadastrar</button>
-            </form>
+        <h2 class="form-title">Cadastrar Produto</h2>
+        <form id="product-form">
+            <div class="form-group">
+                <label for="product-name">Nome do Produto</label>
+                <input type="text" id="product-name" placeholder="Digite o nome do produto" required>
+            </div>
+            <div class="form-group">
+                <label for="product-description">Descrição</label>
+                <textarea id="product-description" rows="3" placeholder="Digite a descrição do produto"
+                    required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="product-image">Imagem</label>
+                <input type="file" id="product-image" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="product-price">Preço</label>
+                <input type="text" id="product-price" placeholder="Digite o preço" required>
+            </div>
+            <div class="form-group">
+                <label for="product-category">Categoria</label>
+                <select id="product-category">
+                    <option value="roupas">Roupas</option>
+                    <option value="calcados">Calçados</option>
+                    <option value="acessorios">Acessórios</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-submit">Cadastrar</button>
+        </form>
+
+        <!-- Listas de produtos por categoria -->
+        <div class="product-category roupas">
+            <h2 class="category-title">Roupas</h2>
+            <div class="product-list" id="roupas-list"></div>
+        </div>
+        <div class="product-category calcados">
+            <h2 class="category-title">Calçados</h2>
+            <div class="product-list" id="calcados-list"></div>
+        </div>
+        <div class="product-category acessorios">
+            <h2 class="category-title">Acessórios</h2>
+            <div class="product-list" id="acessorios-list"></div>
         </div>
 
-        <!-- Lista de produtos -->
-        <div class="product-list" id="product-list">
-            <h2 class="form-title">Produtos Cadastrados</h2>
-        </div>
-
-        <!-- Links de navegação -->
-        <div class="nav-links">
-        </div>
         <button class="back-button" onclick="window.history.back()">Voltar</button>
     </div>
 
     <script>
         const profilePhotoInput = document.getElementById("profile-photo");
         const profilePhotoText = document.getElementById("profile-photo-text");
-        const userName = document.getElementById("user-name");
-        const userEmail = document.getElementById("user-email");
         const productForm = document.getElementById("product-form");
-        const productList = document.getElementById("product-list");
+
+        const roupasList = document.getElementById("roupas-list");
+        const calcadosList = document.getElementById("calcados-list");
+        const acessoriosList = document.getElementById("acessorios-list");
 
         // Função para carregar a foto do perfil
         profilePhotoInput.addEventListener("change", function (event) {
@@ -320,68 +354,57 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function () {
-                    profilePhotoText.style.display = "none"; // Esconde a inicial
-                    const img = document.createElement("img");
-                    img.src = reader.result;
-                    img.style.width = "100%";
-                    img.style.height = "100%";
-                    img.style.objectFit = "cover";
-                    profilePhotoText.parentNode.appendChild(img);
+                    profilePhotoText.style.display = "none";
+                    profilePhotoText.parentNode.innerHTML = `<img src="${reader.result}" style="width: 100%; height: 100%; object-fit: cover;">`;
                 };
                 reader.readAsDataURL(file);
             }
         });
 
-       // Função para adicionar o produto
+        // Função para adicionar produtos nas categorias
         productForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            const productName = document.getElementById("product-name").value;
-            const productDescription = document.getElementById("product-description").value;
+            const productName = document.getElementById("product-name").value.trim();
+            const productDescription = document.getElementById("product-description").value.trim();
             const productImage = document.getElementById("product-image").files[0];
-            const productPrice = document.getElementById("product-price").value;
+            const productPrice = document.getElementById("product-price").value.trim();
+            const productCategory = document.getElementById("product-category").value;
 
-            if (productImage) {
-                const reader = new FileReader();
-                reader.onload = function () {
-                    const productDiv = document.createElement("div");
-                    productDiv.classList.add("product-item");
-
-                    const productImg = document.createElement("img");
-                    productImg.src = reader.result;
-                    productImg.classList.add("product-image");
-
-                    const productInfo = document.createElement("div");
-                    productInfo.classList.add("product-info");
-
-                    const productNameSpan = document.createElement("span");
-                    productNameSpan.textContent = `Nome: ${productName}`;
-
-                    const productDescriptionSpan = document.createElement("span");
-                    productDescriptionSpan.textContent = `Descrição: ${productDescription}`;
-
-                    const productPriceSpan = document.createElement("span");
-                    productPriceSpan.textContent = `Preço: ${productPrice}`;
-
-                    const deleteButton = document.createElement("button");
-                    deleteButton.textContent = "Excluir";
-                    deleteButton.classList.add("delete-btn");
-                    deleteButton.addEventListener("click", function () {
-                        productDiv.remove();
-                     });
-
-                    productInfo.appendChild(productNameSpan);
-                    productInfo.appendChild(productDescriptionSpan);
-                    productInfo.appendChild(productPriceSpan);
-                    productInfo.appendChild(deleteButton);
-
-                    productDiv.appendChild(productImg);
-                    productDiv.appendChild(productInfo);
-
-                    productList.appendChild(productDiv);
-                };
-                reader.readAsDataURL(productImage);
+            if (!productName || !productDescription || !productPrice || !productImage) {
+                alert("Por favor, preencha todos os campos!");
+                return;
             }
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const productDiv = document.createElement("div");
+                productDiv.classList.add("product-item");
+
+                productDiv.innerHTML = `
+                    <img src="${reader.result}" class="product-image">
+                    <div class="product-info">
+                        <span><strong>Nome:</strong> ${productName}</span>
+                        <span><strong>Descrição:</strong> ${productDescription}</span>
+                        <span><strong>Preço:</strong> R$ ${productPrice}</span>
+                        <button class="delete-btn">Excluir</button>
+                    </div>
+                `;
+
+                productDiv.querySelector(".delete-btn").addEventListener("click", function () {
+                    productDiv.remove();
+                });
+
+                // Adiciona o produto na categoria correta
+                if (productCategory === "roupas") {
+                    roupasList.appendChild(productDiv);
+                } else if (productCategory === "calcados") {
+                    calcadosList.appendChild(productDiv);
+                } else if (productCategory === "acessorios") {
+                    acessoriosList.appendChild(productDiv);
+                }
+            };
+            reader.readAsDataURL(productImage);
         });
     </script>
 </body>
